@@ -33,6 +33,21 @@
 	document.addEventListener('mousedown',down);
 	document.addEventListener('mouseup', up);
 
+	/*defining the functions*/
+	/*function DOWN - changes all the coordinates */
+	function down(e){
+		if(e.target==el)
+		{
+			mouseX=e.clientX;
+			mouseY=e.clietnY;
+
+			/*converting string to number for ease in addition later*/
+			elTop=Number(el.style.top.replace(/[^\d\.\-]/g, ''));
+			elLeft=Number(el.style.left.replace(/[^\d\.\-]/g, ''));
+		}
+
+	}
+
 
 
 
