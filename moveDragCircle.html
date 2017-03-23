@@ -21,6 +21,18 @@
 	}
 	</style>
 
+	<script>
+	
+	var el=document.getElementById('dragItem');
+
+	var elTop=0, elLeft=0, mouseX=0, mouseY=0;
+
+	/*1)mouse clicks on the item
+	2) mouse moves down
+3) mouse is freed */
+	document.addEventListener('mousedown',down);
+	document.addEventListener('mouseup', up);
+
 
 
 
