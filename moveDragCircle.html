@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Dram me
-	</title>
+	<title> Drag me</title>
 </head>
 <body>
 	<div id="dragItem"></div>
 	<style>
-	#dragItem
-	{
-	height:200px;
-	width:200px;
-	background: linear-gradient(purple,pink);
-	position:fixed;
-	border-radius: 100px;
-	}
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		#dragItem {
+		height:200px;
+		width:200px;
+		background: linear-gradient(purple,pink);
+		position:fixed;
+		/*border-radius: 100px;*/
+		}
 
-	#dragItem:hover{
-		cursor:crosshair;
-	}
+		#dragItem:hover {
+			cursor: pointer;
+		}
 	</style>
+
+
+
+	
 
 	<script>
 	
-	var el=document.getElementById('dragItem');
-	var elTop=0, elLeft=0, mouseX=0, mouseY=0;
+	var elTop=0;
+	var elLeft=0;
+	var mouseX=0;
+	var mouseY=0;
+	var el = document.getElementById('dragItem');
+	
 
 	/*1)mouse clicks on the item MOUSEDOWN
 	2) mouse moves MOUSEMOVE
 	3) mouse is freed MOUSEUP*/
-	document.addEventListener('mousedown',down);
+	document.addEventListener('mousedown', down);
 	document.addEventListener('mouseup', up);
 
 	/*defining the functions*/
 	/*function DOWN - changes all the coordinates */
 	function down(e){
-		if(e.target==el)
+		if(e.target == el)
 		{
-			mouseX=e.clientX;
-			mouseY=e.clietnY;
+			mouseX = e.clientX;
+			mouseY = e.clientY;
 
 			/*converting string to number for ease in addition later*/
 			elTop=Number(el.style.top.replace(/[^\d\.\-]/g, ''));
 			elLeft=Number(el.style.left.replace(/[^\d\.\-]/g, ''));
-		}
 
-		document.addEventListener('mousemove')
+		document.addEventListener('mousemove',move);
+	}
 
 	}
 
-	function move(e)){
+	function move(e){
 		var delX=e.clientX-mouseX;
 		var delY=e.clientY-mouseY;
 
@@ -57,7 +67,8 @@
 		el.style.left=(elLeft+delX)+"px";
 	}
 
-
+	function up(e){
+		document.removeEventListener('mousemove',move);
 	}
 
 
