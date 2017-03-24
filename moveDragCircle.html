@@ -24,12 +24,11 @@
 	<script>
 	
 	var el=document.getElementById('dragItem');
-
 	var elTop=0, elLeft=0, mouseX=0, mouseY=0;
 
-	/*1)mouse clicks on the item
-	2) mouse moves down
-3) mouse is freed */
+	/*1)mouse clicks on the item MOUSEDOWN
+	2) mouse moves MOUSEMOVE
+	3) mouse is freed MOUSEUP*/
 	document.addEventListener('mousedown',down);
 	document.addEventListener('mouseup', up);
 
@@ -46,11 +45,24 @@
 			elLeft=Number(el.style.left.replace(/[^\d\.\-]/g, ''));
 		}
 
+		document.addEventListener('mousemove')
+
+	}
+
+	function move(e)){
+		var delX=e.clientX-mouseX;
+		var delY=e.clientY-mouseY;
+
+		el.style.top=(elTop+delY)+"px";
+		el.style.left=(elLeft+delX)+"px";
+	}
+
+
 	}
 
 
 
 
-
+</script>
 </body>
 </html>
